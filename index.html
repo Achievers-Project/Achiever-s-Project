@@ -116,13 +116,14 @@
 
   <header>
     <h1>RBI & SEBI - Financial Guardians of India</h1>
-    <p>A School Project by Syed,Arsh,Hannzel,Aditya,Abhineet </p>
+    <p>A School Project by Syed, Arsh, Hannzel, Aditya, Abhineet </p>
   </header>
 
   <nav>
     <button onclick="showTab('rbi')" aria-label="Show RBI content">RBI</button>
     <button onclick="showTab('sebi')" aria-label="Show SEBI content">SEBI</button>
     <button onclick="showTab('info')" aria-label="Show Additional Info">Additional Info</button>
+    <button onclick="showTab('quiz-section')" aria-label="Show Quiz Section">Quiz</button>
   </nav>
 
   <div id="rbi" class="content active">
@@ -155,18 +156,8 @@
     <p>
       SEBI is headquartered in Mumbai and is governed by a board comprising a chairman and several members appointed by the Government of India. Through its regulatory framework, SEBI fosters investor confidence and contributes to the orderly growth of India’s financial markets, making it a cornerstone of the country’s economic development.
     </p>
-
-    <div class="quiz">
-      <h3>Quick Quiz: Who Does What?</h3>
-      <p>Who regulates the stock market in India?</p>
-      <label><input type="radio" name="q1" value="rbi"> RBI</label>
-      <label><input type="radio" name="q1" value="sebi"> SEBI</label>
-      <button onclick="checkAnswer()">Submit</button>
-      <p id="quiz-result"></p>
-    </div>
   </div>
 
-  <!-- ✅ New Additional Info Section -->
   <div id="info" class="content">
     <h2>Additional Information</h2>
     <p>
@@ -189,8 +180,64 @@
     </ul>
   </div>
 
+  <div id="quiz-section" class="content">
+    <h2>RBI & SEBI Knowledge Quiz</h2>
+    <p>Test how much you’ve learned about India’s financial guardians!</p>
+
+    <div class="quiz">
+      <h3>Question 1:</h3>
+      <p>Who regulates the stock market in India?</p>
+      <label><input type="radio" name="q1" value="rbi"> RBI</label>
+      <label><input type="radio" name="q1" value="sebi"> SEBI</label>
+    </div>
+
+    <div class="quiz">
+      <h3>Question 2:</h3>
+      <p>Which institution issues and manages the Indian Rupee?</p>
+      <label><input type="radio" name="q2" value="rbi"> RBI</label>
+      <label><input type="radio" name="q2" value="sebi"> SEBI</label>
+    </div>
+
+    <div class="quiz">
+      <h3>Question 3:</h3>
+      <p>When was SEBI given statutory powers?</p>
+      <label><input type="radio" name="q3" value="1988"> 1988</label>
+      <label><input type="radio" name="q3" value="1992"> 1992</label>
+    </div>
+
+    <button onclick="checkQuizAnswers()">Submit Quiz</button>
+    <p id="quiz-result" style="margin-top: 20px; font-size: 20px;"></p>
+  </div>
+
+  <!-- 💀 Secret Section -->
+  <div id="secret-section" style="text-align:center; margin:40px;">
+    <button id="dontClickBtn" style="background:#8b0000; color:white; border:none; padding:15px 30px; font-size:20px; cursor:pointer; border-radius:6px;">
+      🚫 Don't Click 🚫
+    </button>
+
+    <div id="rap-section" style="display:none; margin-top:25px; background:#fff; padding:25px; border-radius:10px; max-width:700px; margin-left:auto; margin-right:auto;">
+      <h2 style="color:#b22222;">🔥 "Where You At, Hari?" 🔥</h2>
+      <p style="font-size:20px; line-height:1.7; text-align:left;">
+        Yo Hari, where you been, man, you disappeared quick,<br>
+        Team grinding on this project, but you pulled a slick trick.<br>
+        Syed, Arsh, Hannzel, Aditya — all on the grind,<br>
+        While Hari’s “working” hard? Nah, nowhere to find. 😎<br><br>
+
+        You said you’d code, but ghosted the chat,<br>
+        Now the group’s laughing — imagine that! 😂<br>
+        We built the site clean, we made it look fly,<br>
+        While Hari’s excuse list reached the sky. ☁️<br><br>
+
+        So here’s your shoutout, hope you’re alive,<br>
+        Next time contribute, bro, don’t just vibe. 🎤<br>
+        No hate, just facts — we keepin’ it real,<br>
+        But you owe us some effort, that’s the deal. 💯
+      </p>
+    </div>
+  </div>
+
   <footer>
-    Achiever's Project| © 2069
+    Made for School Project | © 2069
   </footer>
 
   <script>
@@ -201,20 +248,48 @@
       document.getElementById(tabId).classList.add('active');
     }
 
-    function checkAnswer() {
-      const answer = document.querySelector('input[name="q1"]:checked');
+    function checkQuizAnswers() {
+      let score = 0;
       const result = document.getElementById('quiz-result');
-      if (!answer) {
-        result.textContent = "Please select an answer!";
-        result.style.color = "orange";
-      } else if (answer.value === "sebi") {
-        result.textContent = "Correct! SEBI regulates the stock market you nerd.";
+
+      const answers = {
+        q1: 'sebi',
+        q2: 'rbi',
+        q3: '1992'
+      };
+
+      Object.keys(answers).forEach(q => {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      });
+
+      if (score === 0) {
+        result.textContent = "Oops! Looks like you need a quick revision 😅";
+        result.style.color = "red";
+      } else if (score === 3) {
+        result.textContent = "🎉 Perfect! You really know your RBI & SEBI!";
         result.style.color = "green";
       } else {
-        result.textContent = "Oops! That's RBI's job in banking, not stocks.";
-        result.style.color = "red";
+        result.textContent = `You got ${score}/3 correct! Not bad, keep learning 📘`;
+        result.style.color = "orange";
       }
     }
+
+    // Secret diss rap reveal
+    document.getElementById("dontClickBtn").addEventListener("click", function() {
+      const rap = document.getElementById("rap-section");
+      if (rap.style.display === "none") {
+        rap.style.display = "block";
+        this.textContent = "😳 You Clicked It...";
+        this.style.background = "#ff0000";
+      } else {
+        rap.style.display = "none";
+        this.textContent = "🚫 Don't Click 🚫";
+        this.style.background = "#8b0000";
+      }
+    });
   </script>
 
 </body>
