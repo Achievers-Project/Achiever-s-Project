@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RBI & SEBI - School Project</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f0f4f8;
+      font-size: 18px;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #0055a5;
+      flex-wrap: wrap;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 20px 40px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    nav button:hover {
+      background: #003f7f;
+    }
+    .content {
+      padding: 40px;
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    ul {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    .quiz {
+      margin-top: 30px;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+    }
+    .quiz h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .quiz label {
+      font-size: 20px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .quiz button {
+      margin-top: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
+      background: #003366;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .quiz button:hover {
+      background: #0055a5;
+    }
+    #quiz-result {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #003366;
+      color: white;
+      font-size: 18px;
+      margin-top: 40px;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 600px) {
+      nav button {
+        padding: 15px 25px;
+        font-size: 18px;
+      }
+      body {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>RBI & SEBI - Financial Guardians of India</h1>
+    <p>A School Project by Syed,Arsh,Hannzel,Aditya,Abhineet (Hari didn't do any work)</p>
+  </header>
+
+  <nav>
+    <button onclick="showTab('rbi')" aria-label="Show RBI content">RBI</button>
+    <button onclick="showTab('sebi')" aria-label="Show SEBI content">SEBI</button>
+    <button onclick="showTab('info')" aria-label="Show Additional Info">Additional Info</button>
+  </nav>
+
+  <div id="rbi" class="content active">
+    <h2>Reserve Bank of India (RBI)</h2>
+    <p>
+      The Reserve Bank of India (RBI) is the central bank of India, established on April 1, 1935. It plays a crucial role in the country’s financial system by managing the issuance and supply of the Indian currency, the rupee. Initially set up under the Reserve Bank of India Act, 1934, it was nationalized in 1949 and now operates under the ownership of the Government of India.
+    </p>
+    <p>
+      RBI’s primary responsibilities include formulating and implementing monetary policy to maintain price stability and ensure economic growth. It regulates and supervises commercial banks, non-banking financial companies (NBFCs), and other financial institutions to maintain public confidence in the banking system. It also manages foreign exchange reserves and facilitates external trade and payments.
+    </p>
+    <p>
+      Another key function of the RBI is to act as the banker to the government and to other banks. It ensures smooth functioning of the payment and settlement systems and promotes financial inclusion across the country. The RBI also plays a developmental role by supporting initiatives that improve banking infrastructure and financial literacy.
+    </p>
+    <p>
+      Headquartered in Mumbai, the RBI is led by a Governor and a team of Deputy Governors. It is widely regarded as the backbone of India’s financial stability and economic resilience.
+    </p>
+  </div>
+
+  <div id="sebi" class="content">
+    <h2>Securities and Exchange Board of India (SEBI)</h2>
+    <p>
+      The Securities and Exchange Board of India (SEBI) is the regulatory authority for the securities market in India. It was established in 1988 and granted statutory powers in 1992 through the SEBI Act. SEBI’s primary objective is to protect the interests of investors in securities and to promote and regulate the securities market.
+    </p>
+    <p>
+      SEBI plays a vital role in ensuring transparency, fairness, and efficiency in the Indian capital markets. It regulates stock exchanges, brokers, mutual funds, portfolio managers, and other market intermediaries. By enforcing rules and guidelines, SEBI works to prevent fraudulent practices like insider trading, price rigging, and market manipulation.
+    </p>
+    <p>
+      One of SEBI’s key functions is to ensure that companies raising funds from the public provide accurate and timely disclosures. It also promotes investor education and awareness, helping individuals make informed investment decisions. SEBI has the authority to investigate violations, impose penalties, and take legal action when necessary.
+    </p>
+    <p>
+      SEBI is headquartered in Mumbai and is governed by a board comprising a chairman and several members appointed by the Government of India. Through its regulatory framework, SEBI fosters investor confidence and contributes to the orderly growth of India’s financial markets, making it a cornerstone of the country’s economic development.
+    </p>
+
+    <div class="quiz">
+      <h3>Quick Quiz: Who Does What?</h3>
+      <p>Who regulates the stock market in India?</p>
+      <label><input type="radio" name="q1" value="rbi"> RBI</label>
+      <label><input type="radio" name="q1" value="sebi"> SEBI</label>
+      <button onclick="checkAnswer()">Submit</button>
+      <p id="quiz-result"></p>
+    </div>
+  </div>
+
+  <!-- ✅ New Additional Info Section -->
+  <div id="info" class="content">
+    <h2>Additional Information</h2>
+    <p>
+      Both RBI and SEBI play vital roles in maintaining India’s financial stability. While the RBI focuses on <strong>monetary policy, banking regulation, and currency management</strong>, SEBI is responsible for <strong>capital markets, investor protection, and securities regulation</strong>.
+    </p>
+    <h3>Key Differences</h3>
+    <ul>
+      <li><strong>RBI:</strong> Controls banks, manages inflation, and issues currency.</li>
+      <li><strong>SEBI:</strong> Regulates the stock market and protects investors.</li>
+    </ul>
+    <h3>Fun Facts</h3>
+    <ul>
+      <li>The RBI logo features a lion and a palm tree, inspired by the East India Company’s emblem.</li>
+      <li>SEBI was formed to restore investor trust after major stock market scams in the late 1980s.</li>
+    </ul>
+    <h3>References</h3>
+    <ul>
+      <li><a href="https://www.rbi.org.in" target="_blank">Official RBI Website</a></li>
+      <li><a href="https://www.sebi.gov.in" target="_blank">Official SEBI Website</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    Made without Hari for School Project or whatever | © 2069
+  </footer>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.content').forEach(div => {
+        div.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function checkAnswer() {
+      const answer = document.querySelector('input[name="q1"]:checked');
+      const result = document.getElementById('quiz-result');
+      if (!answer) {
+        result.textContent = "Please select an answer!";
+        result.style.color = "orange";
+      } else if (answer.value === "sebi") {
+        result.textContent = "Correct! SEBI regulates the stock market you nerd.";
+        result.style.color = "green";
+      } else {
+        result.textContent = "Oops! That's RBI's job in banking, not stocks.";
+        result.style.color = "red";
+      }
+    }
+  </script>
+
+</body>
+</html>
