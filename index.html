@@ -14,8 +14,26 @@
     header {
       background-color: #003366;
       color: white;
-      padding: 30px;
+      padding: 30px 0;
       text-align: center;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+    }
+    .header-logo {
+      height: 80px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .header-logo:hover {
+      transform: scale(1.15);
+    }
+    .header-text {
+      text-align: center;
+      flex: 1;
     }
     header h1 {
       font-size: 36px;
@@ -98,6 +116,17 @@
       color: white;
       font-size: 18px;
       margin-top: 40px;
+      position: relative;
+    }
+
+    /* Secret "Don't Click" style */
+    #dont-click {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #ff4444;
+      cursor: pointer;
+      text-decoration: underline;
     }
 
     /* Responsive styling */
@@ -109,135 +138,77 @@
       body {
         font-size: 16px;
       }
+      .header-logo {
+        height: 60px;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>RBI & SEBI - Financial Guardians of India</h1>
-    <p>A School Project by Syed, Arsh, Hannzel, Aditya, Abhineet </p>
+    <div class="header-container">
+      <!-- RBI Logo as a link -->
+      <a href="https://www.rbi.org.in" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/28/Seal_of_the_Reserve_Bank_of_India.svg" 
+             alt="RBI Logo" class="header-logo">
+      </a>
+
+      <div class="header-text">
+        <h1>RBI & SEBI - Financial Guardians of India</h1>
+        <p>A School Project by Syed, Arsh, Hannzel, Aditya, Abhineet (Hari didn't do any work)</p>
+      </div>
+
+      <!-- SEBI Logo as a link -->
+      <a href="https://www.sebi.gov.in" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/d9/Securities_and_Exchange_Board_of_India_Logo.svg" 
+             alt="SEBI Logo" class="header-logo">
+      </a>
+    </div>
   </header>
 
   <nav>
     <button onclick="showTab('rbi')" aria-label="Show RBI content">RBI</button>
     <button onclick="showTab('sebi')" aria-label="Show SEBI content">SEBI</button>
     <button onclick="showTab('info')" aria-label="Show Additional Info">Additional Info</button>
-    <button onclick="showTab('quiz-section')" aria-label="Show Quiz Section">Quiz</button>
+    <button onclick="showTab('quiz')" aria-label="Show Quiz">Quiz</button>
   </nav>
 
   <div id="rbi" class="content active">
     <h2>Reserve Bank of India (RBI)</h2>
-    <p>
-      The Reserve Bank of India (RBI) is the central bank of India, established on April 1, 1935. It plays a crucial role in the country’s financial system by managing the issuance and supply of the Indian currency, the rupee. Initially set up under the Reserve Bank of India Act, 1934, it was nationalized in 1949 and now operates under the ownership of the Government of India.
-    </p>
-    <p>
-      RBI’s primary responsibilities include formulating and implementing monetary policy to maintain price stability and ensure economic growth. It regulates and supervises commercial banks, non-banking financial companies (NBFCs), and other financial institutions to maintain public confidence in the banking system. It also manages foreign exchange reserves and facilitates external trade and payments.
-    </p>
-    <p>
-      Another key function of the RBI is to act as the banker to the government and to other banks. It ensures smooth functioning of the payment and settlement systems and promotes financial inclusion across the country. The RBI also plays a developmental role by supporting initiatives that improve banking infrastructure and financial literacy.
-    </p>
-    <p>
-      Headquartered in Mumbai, the RBI is led by a Governor and a team of Deputy Governors. It is widely regarded as the backbone of India’s financial stability and economic resilience.
-    </p>
+    <p>The Reserve Bank of India (RBI) is the central bank of India, established on April 1, 1935. It manages currency, monetary policy, and financial stability.</p>
   </div>
 
   <div id="sebi" class="content">
     <h2>Securities and Exchange Board of India (SEBI)</h2>
-    <p>
-      The Securities and Exchange Board of India (SEBI) is the regulatory authority for the securities market in India. It was established in 1988 and granted statutory powers in 1992 through the SEBI Act. SEBI’s primary objective is to protect the interests of investors in securities and to promote and regulate the securities market.
-    </p>
-    <p>
-      SEBI plays a vital role in ensuring transparency, fairness, and efficiency in the Indian capital markets. It regulates stock exchanges, brokers, mutual funds, portfolio managers, and other market intermediaries. By enforcing rules and guidelines, SEBI works to prevent fraudulent practices like insider trading, price rigging, and market manipulation.
-    </p>
-    <p>
-      One of SEBI’s key functions is to ensure that companies raising funds from the public provide accurate and timely disclosures. It also promotes investor education and awareness, helping individuals make informed investment decisions. SEBI has the authority to investigate violations, impose penalties, and take legal action when necessary.
-    </p>
-    <p>
-      SEBI is headquartered in Mumbai and is governed by a board comprising a chairman and several members appointed by the Government of India. Through its regulatory framework, SEBI fosters investor confidence and contributes to the orderly growth of India’s financial markets, making it a cornerstone of the country’s economic development.
-    </p>
+    <p>SEBI regulates India’s capital markets, protects investors, and ensures market transparency.</p>
   </div>
 
   <div id="info" class="content">
     <h2>Additional Information</h2>
-    <p>
-      Both RBI and SEBI play vital roles in maintaining India’s financial stability. While the RBI focuses on <strong>monetary policy, banking regulation, and currency management</strong>, SEBI is responsible for <strong>capital markets, investor protection, and securities regulation</strong>.
-    </p>
-    <h3>Key Differences</h3>
-    <ul>
-      <li><strong>RBI:</strong> Controls banks, manages inflation, and issues currency.</li>
-      <li><strong>SEBI:</strong> Regulates the stock market and protects investors.</li>
-    </ul>
-    <h3>Fun Facts</h3>
-    <ul>
-      <li>The RBI logo features a lion and a palm tree, inspired by the East India Company’s emblem.</li>
-      <li>SEBI was formed to restore investor trust after major stock market scams in the late 1980s.</li>
-    </ul>
-    <h3>References</h3>
-    <ul>
-      <li><a href="https://www.rbi.org.in" target="_blank">Official RBI Website</a></li>
-      <li><a href="https://www.sebi.gov.in" target="_blank">Official SEBI Website</a></li>
-    </ul>
+    <p>RBI focuses on monetary policy and banking, SEBI focuses on capital markets and investor protection.</p>
   </div>
 
-  <div id="quiz-section" class="content">
-    <h2>RBI & SEBI Knowledge Quiz</h2>
-    <p>Test how much you’ve learned about India’s financial guardians!</p>
-
+  <div id="quiz" class="content">
     <div class="quiz">
-      <h3>Question 1:</h3>
+      <h3>Quick Quiz: Who Does What?</h3>
       <p>Who regulates the stock market in India?</p>
       <label><input type="radio" name="q1" value="rbi"> RBI</label>
       <label><input type="radio" name="q1" value="sebi"> SEBI</label>
-    </div>
-
-    <div class="quiz">
-      <h3>Question 2:</h3>
-      <p>Which institution issues and manages the Indian Rupee?</p>
-      <label><input type="radio" name="q2" value="rbi"> RBI</label>
-      <label><input type="radio" name="q2" value="sebi"> SEBI</label>
-    </div>
-
-    <div class="quiz">
-      <h3>Question 3:</h3>
-      <p>When was SEBI given statutory powers?</p>
-      <label><input type="radio" name="q3" value="1988"> 1988</label>
-      <label><input type="radio" name="q3" value="1992"> 1992</label>
-    </div>
-
-    <button onclick="checkQuizAnswers()">Submit Quiz</button>
-    <p id="quiz-result" style="margin-top: 20px; font-size: 20px;"></p>
-  </div>
-
-  <!-- 💀 Secret Section -->
-  <div id="secret-section" style="text-align:center; margin:40px;">
-    <button id="dontClickBtn" style="background:#8b0000; color:white; border:none; padding:15px 30px; font-size:20px; cursor:pointer; border-radius:6px;">
-      🚫 Don't Click 🚫
-    </button>
-
-    <div id="rap-section" style="display:none; margin-top:25px; background:#fff; padding:25px; border-radius:10px; max-width:700px; margin-left:auto; margin-right:auto;">
-      <h2 style="color:#b22222;">🔥 "Where You At, Hari?" 🔥</h2>
-      <p style="font-size:20px; line-height:1.7; text-align:left;">
-        Yo Hari, where you been, man, you disappeared quick,<br>
-        Team grinding on this project, but you pulled a slick trick.<br>
-        Syed, Arsh, Hannzel, Aditya — all on the grind,<br>
-        While Hari’s “working” hard? Nah, nowhere to find. 😎<br><br>
-
-        You said you’d code, but ghosted the chat,<br>
-        Now the group’s laughing — imagine that! 😂<br>
-        We built the site clean, we made it look fly,<br>
-        While Hari’s excuse list reached the sky. ☁️<br><br>
-
-        So here’s your shoutout, hope you’re alive,<br>
-        Next time contribute, bro, don’t just vibe. 🎤<br>
-        No hate, just facts — we keepin’ it real,<br>
-        But you owe us some effort, that’s the deal. 💯
-      </p>
+      <button onclick="checkAnswer()">Submit</button>
+      <p id="quiz-result"></p>
     </div>
   </div>
 
   <footer>
-    Made for School Project | © 2069
+    Made without Hari for School Project or whatever | © 2069
+    <span id="dont-click" onclick="revealDiss()">Don't Click</span>
+    <p id="hari-diss" style="display:none; color:yellow; margin-top:15px;">
+      Yo Hari, sitting lazy, no work on the project,  
+      Everyone else did the grind while you just object.  
+      Code in your brain? Nah, just some dust,  
+      This rap exposes you, boy, we knew we must!  
+    </p>
   </footer>
 
   <script>
@@ -248,48 +219,25 @@
       document.getElementById(tabId).classList.add('active');
     }
 
-    function checkQuizAnswers() {
-      let score = 0;
+    function checkAnswer() {
+      const answer = document.querySelector('input[name="q1"]:checked');
       const result = document.getElementById('quiz-result');
-
-      const answers = {
-        q1: 'sebi',
-        q2: 'rbi',
-        q3: '1992'
-      };
-
-      Object.keys(answers).forEach(q => {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        if (selected && selected.value === answers[q]) {
-          score++;
-        }
-      });
-
-      if (score === 0) {
-        result.textContent = "Oops! Looks like you need a quick revision 😅";
-        result.style.color = "red";
-      } else if (score === 3) {
-        result.textContent = "🎉 Perfect! You really know your RBI & SEBI!";
+      if (!answer) {
+        result.textContent = "Please select an answer!";
+        result.style.color = "orange";
+      } else if (answer.value === "sebi") {
+        result.textContent = "Correct! SEBI regulates the stock market you nerd.";
         result.style.color = "green";
       } else {
-        result.textContent = `You got ${score}/3 correct! Not bad, keep learning 📘`;
-        result.style.color = "orange";
+        result.textContent = "Oops! That's RBI's job in banking, not stocks.";
+        result.style.color = "red";
       }
     }
 
-    // Secret diss rap reveal
-    document.getElementById("dontClickBtn").addEventListener("click", function() {
-      const rap = document.getElementById("rap-section");
-      if (rap.style.display === "none") {
-        rap.style.display = "block";
-        this.textContent = "😳 You Clicked It...";
-        this.style.background = "#ff0000";
-      } else {
-        rap.style.display = "none";
-        this.textContent = "🚫 Don't Click 🚫";
-        this.style.background = "#8b0000";
-      }
-    });
+    function revealDiss() {
+      const diss = document.getElementById('hari-diss');
+      diss.style.display = diss.style.display === 'none' ? 'block' : 'none';
+    }
   </script>
 
 </body>
