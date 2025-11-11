@@ -1,296 +1,755 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RBI & SEBI - School Project</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f0f4f8;
-      font-size: 18px;
-    }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 30px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 20px;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #0055a5;
-      flex-wrap: wrap;
-    }
-    nav button {
-      background: none;
-      border: none;
-      color: white;
-      padding: 20px 40px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-    nav button:hover {
-      background: #003f7f;
-    }
-    .content {
-      padding: 40px;
-      display: none;
-    }
-    .active {
-      display: block;
-    }
-    h2 {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
-    p {
-      font-size: 20px;
-      line-height: 1.6;
-    }
-    ul {
-      font-size: 20px;
-      margin-top: 10px;
-    }
-    .quiz {
-      margin-top: 30px;
-      background: #fff;
-      padding: 25px;
-      border-radius: 8px;
-    }
-    .quiz h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    .quiz label {
-      font-size: 20px;
-      display: block;
-      margin-bottom: 10px;
-    }
-    .quiz button {
-      margin-top: 15px;
-      padding: 12px 24px;
-      font-size: 18px;
-      background: #003366;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .quiz button:hover {
-      background: #0055a5;
-    }
-    #quiz-result {
-      font-size: 20px;
-      margin-top: 10px;
-    }
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: #003366;
-      color: white;
-      font-size: 18px;
-      margin-top: 40px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserve Bank of India - Interactive Portal</title>
+<style>
+/* ====== GENERAL STYLES ====== */
+body { margin:0; font-family:Arial,sans-serif; scroll-behavior:smooth; background:#f0f8f8; }
+header { background:#004d40; color:white; padding:1rem 2rem; position:sticky; top:0; z-index:100; display:flex; justify-content:space-between; align-items:center; }
+header h1 { margin:0; font-size:1.8rem; }
+nav a { color:white; text-decoration:none; margin-left:1.5rem; font-weight:500; }
+nav a:hover { text-decoration:underline; }
+section { padding:4rem 2rem; }
+h2 { font-size:2rem; margin-bottom:1rem; color:#004d40; }
+p { font-size:1rem; line-height:1.6; color:#333; max-width:900px; margin:0 auto 1rem; }
 
-    /* Responsive styling */
-    @media (max-width: 600px) {
-      nav button {
-        padding: 15px 25px;
-        font-size: 18px;
-      }
-      body {
-        font-size: 16px;
-      }
-    }
-  </style>
+/* ===== HERO SECTION ===== */
+.hero { background:linear-gradient(135deg,#e0f7fa,#b2dfdb); text-align:center; padding:6rem 2rem; }
+.hero h2 { font-size:2.5rem; margin-bottom:1rem; }
+.hero p { font-size:1.2rem; margin-bottom:2rem; }
+.hero button { padding:0.8rem 1.5rem; background:linear-gradient(90deg,#00796b,#004d40); color:white; border:none; border-radius:8px; cursor:pointer; font-size:1rem; transition:all 0.3s; }
+.hero button:hover { transform:translateY(-2px); background:linear-gradient(90deg,#004d40,#00796b); }
+
+/* ===== HISTORY & MISSION ===== */
+.history, .mission { background:white; border-radius:15px; padding:2rem; max-width:1000px; margin:2rem auto; box-shadow:0 6px 20px rgba(0,0,0,0.1); }
+.history h3, .mission h3 { color:#004d40; margin-bottom:1rem; }
+.history p, .mission p { color:#333; }
+.mission ul { margin-left:1.2rem; line-height:1.6; }
+
+/* ===== CONTACT FORM ===== */
+.contact-section { background:linear-gradient(135deg,#e0f7fa,#fffde7); padding:3rem 2rem; border-radius:15px; max-width:700px; margin:3rem auto; box-shadow:0 6px 20px rgba(0,0,0,0.1); }
+.contact-section h2 { text-align:center; color:#004d40; margin-bottom:2rem; }
+.contact-section input, .contact-section textarea { width:100%; padding:0.6rem; margin-bottom:1rem; border-radius:8px; border:1px solid #ccc; }
+.contact-section button { background:linear-gradient(90deg,#00796b,#004d40); color:white; padding:0.8rem 1.5rem; border:none; border-radius:8px; cursor:pointer; transition:all 0.3s; }
+.contact-section button:hover { background:linear-gradient(90deg,#004d40,#00796b); transform:translateY(-2px); }
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal { opacity:0; transform:translateY(50px); transition:all 0.8s ease; }
+.reveal.active { opacity:1; transform:translateY(0); }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>RBI & SEBI - Financial Guardians of India</h1>
-    <p>A School Project by Syed, Arsh, Hannzel, Aditya, Abhineet </p>
-  </header>
-
+<!-- ===== HEADER ===== -->
+<header>
+  <h1>Reserve Bank of India</h1>
   <nav>
-    <button onclick="showTab('rbi')" aria-label="Show RBI content">RBI</button>
-    <button onclick="showTab('sebi')" aria-label="Show SEBI content">SEBI</button>
-    <button onclick="showTab('info')" aria-label="Show Additional Info">Additional Info</button>
-    <button onclick="showTab('quiz-section')" aria-label="Show Quiz Section">Quiz</button>
+    <a href="#home">Home</a>
+    <a href="#history">History</a>
+    <a href="#mission">Mission</a>
+    <a href="#contact">Feedback</a>
   </nav>
+</header>
 
-  <div id="rbi" class="content active">
-    <h2>Reserve Bank of India (RBI)</h2>
-    <p>
-      The Reserve Bank of India (RBI) is the central bank of India, established on April 1, 1935. It plays a crucial role in the country’s financial system by managing the issuance and supply of the Indian currency, the rupee. Initially set up under the Reserve Bank of India Act, 1934, it was nationalized in 1949 and now operates under the ownership of the Government of India.
-    </p>
-    <p>
-      RBI’s primary responsibilities include formulating and implementing monetary policy to maintain price stability and ensure economic growth. It regulates and supervises commercial banks, non-banking financial companies (NBFCs), and other financial institutions to maintain public confidence in the banking system. It also manages foreign exchange reserves and facilitates external trade and payments.
-    </p>
-    <p>
-      Another key function of the RBI is to act as the banker to the government and to other banks. It ensures smooth functioning of the payment and settlement systems and promotes financial inclusion across the country. The RBI also plays a developmental role by supporting initiatives that improve banking infrastructure and financial literacy.
-    </p>
-    <p>
-      Headquartered in Mumbai, the RBI is led by a Governor and a team of Deputy Governors. It is widely regarded as the backbone of India’s financial stability and economic resilience.
-    </p>
-  </div>
+<!-- ===== HERO SECTION ===== -->
+<section id="home" class="hero reveal">
+  <h2>Welcome to the RBI Interactive Portal</h2>
+  <p>Explore India’s central bank, its policies, currency management, educational resources, and more in an interactive way.</p>
+  <button onclick="document.querySelector('#history').scrollIntoView({behavior:'smooth'})">Learn More</button>
+</section>
 
-  <div id="sebi" class="content">
-    <h2>Securities and Exchange Board of India (SEBI)</h2>
-    <p>
-      The Securities and Exchange Board of India (SEBI) is the regulatory authority for the securities market in India. It was established in 1988 and granted statutory powers in 1992 through the SEBI Act. SEBI’s primary objective is to protect the interests of investors in securities and to promote and regulate the securities market.
-    </p>
-    <p>
-      SEBI plays a vital role in ensuring transparency, fairness, and efficiency in the Indian capital markets. It regulates stock exchanges, brokers, mutual funds, portfolio managers, and other market intermediaries. By enforcing rules and guidelines, SEBI works to prevent fraudulent practices like insider trading, price rigging, and market manipulation.
-    </p>
-    <p>
-      One of SEBI’s key functions is to ensure that companies raising funds from the public provide accurate and timely disclosures. It also promotes investor education and awareness, helping individuals make informed investment decisions. SEBI has the authority to investigate violations, impose penalties, and take legal action when necessary.
-    </p>
-    <p>
-      SEBI is headquartered in Mumbai and is governed by a board comprising a chairman and several members appointed by the Government of India. Through its regulatory framework, SEBI fosters investor confidence and contributes to the orderly growth of India’s financial markets, making it a cornerstone of the country’s economic development.
-    </p>
-  </div>
+<!-- ===== HISTORY SECTION ===== -->
+<section id="history" class="history reveal">
+  <h2>History of RBI</h2>
+  <p>The Reserve Bank of India was established on April 1, 1935, under the Reserve Bank of India Act, 1934. It was nationalized in 1949 post-independence, becoming the cornerstone of India’s financial system.</p>
+  <p>It plays a crucial role in managing currency, supervising banks, and controlling inflation to foster economic stability and growth in India.</p>
+</section>
 
-  <div id="info" class="content">
-    <h2>Additional Information</h2>
-    <p>
-      Both RBI and SEBI play vital roles in maintaining India’s financial stability. While the RBI focuses on <strong>monetary policy, banking regulation, and currency management</strong>, SEBI is responsible for <strong>capital markets, investor protection, and securities regulation</strong>.
-    </p>
-    <h3>Key Differences</h3>
-    <ul>
-      <li><strong>RBI:</strong> Controls banks, manages inflation, and issues currency.</li>
-      <li><strong>SEBI:</strong> Regulates the stock market and protects investors.</li>
-    </ul>
-    <h3>Fun Facts</h3>
-    <ul>
-      <li>The RBI logo features a lion and a palm tree, inspired by the East India Company’s emblem.</li>
-      <li>SEBI was formed to restore investor trust after major stock market scams in the late 1980s.</li>
-    </ul>
-    <h3>References</h3>
-    <ul>
-      <li><a href="https://www.rbi.org.in" target="_blank">Official RBI Website</a></li>
-      <li><a href="https://www.sebi.gov.in" target="_blank">Official SEBI Website</a></li>
-    </ul>
-  </div>
+<!-- ===== MISSION SECTION ===== -->
+<section id="mission" class="mission reveal">
+  <h2>Mission & Vision</h2>
+  <p>The RBI’s mission is to maintain monetary stability and ensure adequate flow of credit to productive sectors. Its vision includes:</p>
+  <ul>
+    <li>Price stability while supporting growth.</li>
+    <li>Development of a safe, sound, and efficient financial system.</li>
+    <li>Fostering financial inclusion and digital innovation.</li>
+    <li>Ensuring the integrity and trust of India’s currency system.</li>
+  </ul>
+</section>
 
-  <div id="quiz-section" class="content">
-    <h2>RBI & SEBI Knowledge Quiz</h2>
-    <p>Test how much you’ve learned about India’s financial guardians!</p>
+<!-- ===== CONTACT FORM (FORMSPREE) ===== -->
+<section id="contact" class="contact-section reveal">
+  <h2>Send Us Your Feedback</h2>
+  <form action="https://formspree.io/f/mjkjvawl" method="POST" id="rbiContactForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
 
-    <div class="quiz">
-      <h3>Question 1:</h3>
-      <p>Who regulates the stock market in India?</p>
-      <label><input type="radio" name="q1" value="rbi"> RBI</label>
-      <label><input type="radio" name="q1" value="sebi"> SEBI</label>
-    </div>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
 
-    <div class="quiz">
-      <h3>Question 2:</h3>
-      <p>Which institution issues and manages the Indian Rupee?</p>
-      <label><input type="radio" name="q2" value="rbi"> RBI</label>
-      <label><input type="radio" name="q2" value="sebi"> SEBI</label>
-    </div>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" required></textarea><br>
 
-    <div class="quiz">
-      <h3>Question 3:</h3>
-      <p>When was SEBI given statutory powers?</p>
-      <label><input type="radio" name="q3" value="1988"> 1988</label>
-      <label><input type="radio" name="q3" value="1992"> 1992</label>
-    </div>
+    <button type="submit">Send</button>
+  </form>
+</section>
 
-    <button onclick="checkQuizAnswers()">Submit Quiz</button>
-    <p id="quiz-result" style="margin-top: 20px; font-size: 20px;"></p>
-  </div>
+<script>
+// ===== SIMPLE FORM ALERT =====
+const contactForm = document.getElementById("rbiContactForm");
+contactForm.addEventListener("submit", function(e){
+  setTimeout(()=>{
+    alert("Thank you for your feedback! Your message has been sent.");
+    contactForm.reset();
+  },100);
+});
 
-  <!-- 💀 Secret Section -->
-  <div id="secret-section" style="text-align:center; margin:40px;">
-    <button id="dontClickBtn" style="background:#8b0000; color:white; border:none; padding:15px 30px; font-size:20px; cursor:pointer; border-radius:6px;">
-      🚫 Don't Click 🚫
-    </button>
-
-    <div id="rap-section" style="display:none; margin-top:25px; background:#fff; padding:25px; border-radius:10px; max-width:700px; margin-left:auto; margin-right:auto;">
-      <h2 style="color:#b22222;">🔥 "Where You At, Hari?" 🔥</h2>
-      <p style="font-size:20px; line-height:1.7; text-align:left;">
-        Yo Hari, where you been, man, you disappeared quick,<br>
-        Team grinding on this project, but you pulled a slick trick.<br>
-        Syed, Arsh, Hannzel, Aditya — all on the grind,<br>
-        While Hari’s “working” hard? Nah, nowhere to find. 😎<br><br>
-
-        You said you’d code, but ghosted the chat,<br>
-        Now the group’s laughing — imagine that! 😂<br>
-        We built the site clean, we made it look fly,<br>
-        While Hari’s excuse list reached the sky. ☁️<br><br>
-
-        So here’s your shoutout, hope you’re alive,<br>
-        Next time contribute, bro, don’t just vibe. 🎤<br>
-        No hate, just facts — we keepin’ it real,<br>
-        But you owe us some effort, that’s the deal. 💯
-      </p>
-    </div>
-  </div>
-
-  <footer>
-    Made  for School Project  | © 2069
-  </footer>
-
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.content').forEach(div => {
-        div.classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
+// ===== REVEAL ANIMATION =====
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
+  for(let i=0;i<reveals.length;i++){
+    const windowHeight = window.innerHeight;
+    const revealTop = reveals[i].getBoundingClientRect().top;
+    const revealPoint = 100;
+    if(revealTop < windowHeight - revealPoint){
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
     }
+  }
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+</script>
+<!-- ======== RBI POLICY & FUNCTIONS SECTION ======== -->
+<section id="policy" class="reveal" style="background:linear-gradient(135deg,#f1f8e9,#e0f7fa); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:2rem;">RBI Monetary Policy & Core Functions</h2>
 
-    function checkQuizAnswers() {
-      let score = 0;
-      const result = document.getElementById('quiz-result');
+  <p style="text-align:center; max-width:850px; margin:0 auto 2rem; color:#333;">
+    The RBI formulates and implements India’s monetary policy to ensure price stability and adequate flow of credit to productive sectors.  
+    It performs several critical roles that shape the economy’s direction.
+  </p>
 
-      const answers = {
-        q1: 'sebi',
-        q2: 'rbi',
-        q3: '1992'
-      };
+  <div class="policy-container">
+    <div class="policy-card reveal">
+      <h3>🪙 Monetary Policy</h3>
+      <p>Controls money supply, interest rates, and credit flow to stabilize prices and foster growth.</p>
+    </div>
+    <div class="policy-card reveal">
+      <h3>🏦 Regulator of Banks</h3>
+      <p>Supervises and regulates commercial and cooperative banks ensuring financial soundness.</p>
+    </div>
+    <div class="policy-card reveal">
+      <h3>💹 Foreign Exchange Management</h3>
+      <p>Manages the Foreign Exchange Market to maintain currency stability.</p>
+    </div>
+    <div class="policy-card reveal">
+      <h3>💰 Issuer of Currency</h3>
+      <p>Exclusive authority to issue Indian currency, maintaining trust and preventing counterfeiting.</p>
+    </div>
+    <div class="policy-card reveal">
+      <h3>📊 Developmental Role</h3>
+      <p>Promotes financial inclusion, digital banking, and supports economic development initiatives.</p>
+    </div>
+  </div>
 
-      Object.keys(answers).forEach(q => {
-        const selected = document.querySelector(`input[name="${q}"]:checked`);
-        if (selected && selected.value === answers[q]) {
-          score++;
-        }
-      });
+  <div class="policy-simulator reveal" style="text-align:center; background:white; border-radius:15px; padding:2rem; margin:3rem auto; max-width:600px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+    <h3>🧮 Try the Monetary Policy Simulator</h3>
+    <p>Select a change in repo rate and see its expected effect on the economy:</p>
+    <select id="repoRateChange" style="margin-top:1rem; padding:0.6rem 1.2rem; border-radius:8px; border:none; background:#e0f2f1; color:#004d40;">
+      <option value="increase">Increase Repo Rate</option>
+      <option value="decrease">Decrease Repo Rate</option>
+    </select>
+    <button id="simulateBtn" style="margin-left:1rem; padding:0.6rem 1.2rem; border-radius:8px; border:none; background:linear-gradient(90deg,#00796b,#004d40); color:white; cursor:pointer; transition:all 0.3s;">Simulate</button>
+    <p id="result" style="margin-top:1rem; font-weight:500;"></p>
+  </div>
+</section>
 
-      if (score === 0) {
-        result.textContent = "Oops! Looks like you need a quick revision 😅";
-        result.style.color = "red";
-      } else if (score === 3) {
-        result.textContent = "🎉 Perfect! You really are a certified nerd!";
-        result.style.color = "green";
-      } else {
-        result.textContent = `You got ${score}/3 correct! Not bad, try harder tho📘`;
-        result.style.color = "orange";
-      }
+<style>
+.policy-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; margin:3rem auto; max-width:1100px; padding:0 1rem; }
+.policy-card { background:white; border-radius:15px; padding:2rem; text-align:center; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition:all 0.3s ease; border-top:4px solid #00796b; }
+.policy-card:hover { transform:translateY(-8px); box-shadow:0 10px 25px rgba(0,0,0,0.2); }
+.policy-card h3 { color:#004d40; margin-bottom:1rem; }
+.policy-card p { color:#444; font-size:0.95rem; }
+</style>
+
+<script>
+// ===== POLICY SIMULATOR SCRIPT =====
+const simulateBtn = document.getElementById("simulateBtn");
+if(simulateBtn){
+  simulateBtn.addEventListener("click", () => {
+    const change = document.getElementById("repoRateChange").value;
+    const result = document.getElementById("result");
+    if(change === "increase"){
+      result.innerHTML = "📈 Increasing the repo rate makes borrowing costlier, reducing inflation but slowing growth.";
+      result.style.color="#c62828";
+    } else {
+      result.innerHTML = "📉 Decreasing the repo rate makes loans cheaper, stimulating spending but raising inflation risk.";
+      result.style.color="#2e7d32";
     }
+  });
+}
+</script>
+<!-- ======== CURRENCY MANAGEMENT SECTION ======== -->
+<section id="currency" class="reveal" style="background:linear-gradient(135deg,#e8f5e9,#e0f7fa); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:2rem;">Currency Management & Security Features</h2>
+  <p style="text-align:center; max-width:850px; margin:0 auto 2rem; color:#333;">
+    The RBI is solely responsible for the issue and management of Indian currency. It ensures clean, authentic notes and constantly upgrades security features.
+  </p>
 
-    // Secret diss rap reveal
-    document.getElementById("dontClickBtn").addEventListener("click", function() {
-      const rap = document.getElementById("rap-section");
-      if (rap.style.display === "none") {
-        rap.style.display = "block";
-        this.textContent = "😳 You Clicked It...";
-        this.style.background = "#ff0000";
-      } else {
-        rap.style.display = "none";
-        this.textContent = "🚫 Don't Click 🚫";
-        this.style.background = "#8b0000";
-      }
-    });
-  </script>
+  <div class="currency-grid">
+    <div class="currency-card reveal">
+      <div class="currency-inner">
+        <div class="currency-front">
+          <img src="https://upload.wikimedia.org/wikipedia/en/2/2c/Indian_500_rupee_note_-_Mahatma_Gandhi_New_Series.jpg" alt="₹500 Note">
+          <h3>₹500 Note</h3>
+        </div>
+        <div class="currency-back">
+          <h4>Security Features:</h4>
+          <ul>
+            <li>Watermark of Mahatma Gandhi</li>
+            <li>Transparent security thread</li>
+            <li>Micro-lettering “RBI” & “500”</li>
+            <li>Color shift security ink</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency-card reveal">
+      <div class="currency-inner">
+        <div class="currency-front">
+          <img src="https://upload.wikimedia.org/wikipedia/en/d/d1/Indian_2000_rupee_note_-_Mahatma_Gandhi_New_Series.jpg" alt="₹2000 Note">
+          <h3>₹2000 Note</h3>
+        </div>
+        <div class="currency-back">
+          <h4>Security Features:</h4>
+          <ul>
+            <li>See-through register with denominational numeral</li>
+            <li>Latent image visible when tilted</li>
+            <li>Intaglio printing for tactile feel</li>
+            <li>Optically variable ink</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency-card reveal">
+      <div class="currency-inner">
+        <div class="currency-front">
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Indian_100_rupee_note_-_Mahatma_Gandhi_New_Series.jpg" alt="₹100 Note">
+          <h3>₹100 Note</h3>
+        </div>
+        <div class="currency-back">
+          <h4>Security Features:</h4>
+          <ul>
+            <li>Windowed security thread</li>
+            <li>Color-shifting numeral</li>
+            <li>RBI microprint design</li>
+            <li>Raised printing for accessibility</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.currency-grid { display:flex; justify-content:center; flex-wrap:wrap; gap:2rem; margin:3rem auto; max-width:1200px; padding:0 1rem; }
+.currency-card { background:transparent; width:300px; height:380px; perspective:1000px; }
+.currency-inner { position:relative; width:100%; height:100%; text-align:center; transition:transform 0.8s; transform-style:preserve-3d; }
+.currency-card:hover .currency-inner { transform:rotateY(180deg); }
+.currency-front, .currency-back { position:absolute; width:100%; height:100%; border-radius:15px; backface-visibility:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.2); background:white; overflow:hidden; }
+.currency-front img { width:100%; height:250px; object-fit:cover; }
+.currency-front h3 { margin-top:1rem; color:#004d40; font-size:1.2rem; }
+.currency-back { background:linear-gradient(180deg,#004d40,#00796b); color:white; transform:rotateY(180deg); padding:1.5rem; }
+.currency-back h4 { margin-bottom:1rem; font-size:1.1rem; color:#ffee58; }
+.currency-back ul { text-align:left; line-height:1.6; font-size:0.95rem; list-style-type:square; }
+.currency-back li { margin-left:1rem; }
+</style>
+<!-- ======== SEMI SECTION ======== -->
+<section id="semi" class="reveal" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:2rem;">SEMI (System of Economic Management & Insights)</h2>
+  <p style="text-align:center; max-width:850px; margin:0 auto 2rem; color:#333;">
+    SEMI is a special analytical module to monitor economic indicators, banking performance, and monetary trends in real-time.
+  </p>
+
+  <div class="semi-cards" style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; max-width:1100px; margin:3rem auto;">
+    <div class="semi-card reveal" style="background:white; border-radius:15px; padding:2rem; width:250px; text-align:center; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+      <h3>📈 GDP Growth</h3>
+      <p>Track quarterly GDP and sector-wise contributions.</p>
+    </div>
+    <div class="semi-card reveal" style="background:white; border-radius:15px; padding:2rem; width:250px; text-align:center; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+      <h3>💰 Inflation Rate</h3>
+      <p>Monitor CPI, WPI, and core inflation trends.</p>
+    </div>
+    <div class="semi-card reveal" style="background:white; border-radius:15px; padding:2rem; width:250px; text-align:center; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+      <h3>🏦 Bank Performance</h3>
+      <p>Overview of liquidity, credit flow, and interest rates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== FAQ SECTION ======== -->
+<section id="faq" class="reveal" style="background:linear-gradient(135deg,#e0f7fa,#b2dfdb); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:2rem;">Frequently Asked Questions (FAQ)</h2>
+  
+  <div class="faq-container" style="max-width:800px; margin:0 auto;">
+    <div class="faq-item reveal" style="background:white; margin-bottom:1rem; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+      <button class="faq-question" style="width:100%; padding:1rem; text-align:left; border:none; outline:none; font-size:1rem; cursor:pointer; background:#004d40; color:white; border-radius:10px 10px 0 0;">What is the primary role of RBI?</button>
+      <div class="faq-answer" style="padding:1rem; display:none; background:#f0f8f8;">The RBI regulates the issue and supply of the Indian rupee and manages the country’s monetary policy to ensure financial stability.</div>
+    </div>
+
+    <div class="faq-item reveal" style="background:white; margin-bottom:1rem; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+      <button class="faq-question" style="width:100%; padding:1rem; text-align:left; border:none; outline:none; font-size:1rem; cursor:pointer; background:#004d40; color:white; border-radius:10px 10px 0 0;">How does RBI control inflation?</button>
+      <div class="faq-answer" style="padding:1rem; display:none; background:#f0f8f8;">Through monetary policy instruments like repo rate adjustments, cash reserve ratio, and open market operations.</div>
+    </div>
+
+    <div class="faq-item reveal" style="background:white; margin-bottom:1rem; border-radius:10px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+      <button class="faq-question" style="width:100%; padding:1rem; text-align:left; border:none; outline:none; font-size:1rem; cursor:pointer; background:#004d40; color:white; border-radius:10px 10px 0 0;">How can I submit feedback?</button>
+      <div class="faq-answer" style="padding:1rem; display:none; background:#f0f8f8;">Use the feedback form on this page — it will send your message directly to our email via Formspree.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ===== FAQ ACCORDION =====
+const faqQuestions = document.querySelectorAll(".faq-question");
+faqQuestions.forEach(q => {
+  q.addEventListener("click", () => {
+    const answer = q.nextElementSibling;
+    const isVisible = answer.style.display === "block";
+    document.querySelectorAll(".faq-answer").forEach(a => a.style.display = "none");
+    answer.style.display = isVisible ? "none" : "block";
+  });
+});
+</script>
+<!-- ======== ANALYTICS SECTION ======== -->
+<section id="analytics" class="reveal" style="background:linear-gradient(135deg,#e0f7fa,#fffde7); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:2rem;">Analytics Dashboard</h2>
+  <p style="text-align:center; max-width:850px; margin:0 auto 2rem; color:#333;">
+    Visualize key economic indicators and RBI data with interactive charts.
+  </p>
+
+  <canvas id="gdpChart" width="400" height="200" style="display:block; margin:2rem auto; max-width:600px;"></canvas>
+  <canvas id="inflationChart" width="400" height="200" style="display:block; margin:2rem auto; max-width:600px;"></canvas>
+</section>
+
+<!-- ===== BACK TO TOP BUTTON ===== -->
+<button id="backToTop" style="position:fixed; bottom:30px; right:30px; padding:0.8rem 1.2rem; border:none; border-radius:50px; background:linear-gradient(90deg,#00796b,#004d40); color:white; cursor:pointer; font-size:1rem; display:none; box-shadow:0 4px 12px rgba(0,0,0,0.3);">↑ Top</button>
+
+<!-- ===== CHART.JS CDN ===== -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// ===== BACK TO TOP BUTTON SCRIPT =====
+const backToTop = document.getElementById("backToTop");
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 400) backToTop.style.display = "block";
+  else backToTop.style.display = "none";
+});
+backToTop.addEventListener("click", () => {
+  window.scrollTo({ top:0, behavior:'smooth' });
+});
+
+// ===== CHARTS =====
+const gdpCtx = document.getElementById('gdpChart').getContext('2d');
+const gdpChart = new Chart(gdpCtx, {
+    type: 'line',
+    data: {
+        labels: ['2019','2020','2021','2022','2023'],
+        datasets: [{
+            label: 'GDP Growth (%)',
+            data: [4.2, -7.3, 8.7, 6.9, 6.5],
+            borderColor: '#00796b',
+            backgroundColor: 'rgba(0,121,107,0.2)',
+            fill:true,
+            tension:0.3
+        }]
+    },
+    options: { responsive:true, plugins:{legend:{position:'top'}} }
+});
+
+const inflationCtx = document.getElementById('inflationChart').getContext('2d');
+const inflationChart = new Chart(inflationCtx, {
+    type: 'bar',
+    data: {
+        labels: ['2019','2020','2021','2022','2023'],
+        datasets: [{
+            label: 'Inflation Rate (%)',
+            data: [3.7, 6.2, 5.1, 5.7, 5.4],
+            backgroundColor:'#004d40'
+        }]
+    },
+    options: { responsive:true, plugins:{legend:{position:'top'}} }
+});
+</script>
+
+<style>
+/* OPTIONAL: Hover effects for charts */
+canvas:hover { transform:scale(1.02); transition:transform 0.3s ease; }
+</style>
+
+<!-- ===== END OF WEBSITE ===== -->
+<!-- ======== NOTES & CURRENCY SECTION ======== -->
+<section id="currency" class="reveal" style="background:linear-gradient(135deg,#fffde7,#e0f7fa); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:2rem;">Indian Currency & Security Features</h2>
+  <p style="text-align:center; max-width:850px; margin:0 auto 2rem; color:#333;">
+    Explore the major Indian notes and learn about their advanced security features!
+  </p>
+
+  <div class="currency-grid">
+    <div class="currency-card reveal">
+      <div class="currency-inner">
+        <div class="currency-front">
+          <img src="https://upload.wikimedia.org/wikipedia/en/2/2c/Indian_500_rupee_note_-_Mahatma_Gandhi_New_Series.jpg" alt="₹500 Note">
+          <h3>₹500 Note</h3>
+        </div>
+        <div class="currency-back">
+          <h4>Security Features:</h4>
+          <ul>
+            <li>Watermark: Mahatma Gandhi</li>
+            <li>Transparent security thread</li>
+            <li>Micro-lettering: “RBI” & “500”</li>
+            <li>Color-shifting ink</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency-card reveal">
+      <div class="currency-inner">
+        <div class="currency-front">
+          <img src="https://upload.wikimedia.org/wikipedia/en/d/d1/Indian_2000_rupee_note_-_Mahatma_Gandhi_New_Series.jpg" alt="₹2000 Note">
+          <h3>₹2000 Note</h3>
+        </div>
+        <div class="currency-back">
+          <h4>Security Features:</h4>
+          <ul>
+            <li>See-through register with numeral</li>
+            <li>Latent image</li>
+            <li>Intaglio printing</li>
+            <li>Optically variable ink</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="currency-card reveal">
+      <div class="currency-inner">
+        <div class="currency-front">
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Indian_100_rupee_note_-_Mahatma_Gandhi_New_Series.jpg" alt="₹100 Note">
+          <h3>₹100 Note</h3>
+        </div>
+        <div class="currency-back">
+          <h4>Security Features:</h4>
+          <ul>
+            <li>Windowed security thread</li>
+            <li>Color-shifting numeral</li>
+            <li>Microprint RBI</li>
+            <li>Raised printing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.currency-grid { display:flex; justify-content:center; flex-wrap:wrap; gap:2rem; margin:3rem auto; max-width:1200px; padding:0 1rem; }
+.currency-card { background:transparent; width:300px; height:380px; perspective:1000px; }
+.currency-inner { position:relative; width:100%; height:100%; text-align:center; transition:transform 0.8s; transform-style:preserve-3d; }
+.currency-card:hover .currency-inner { transform:rotateY(180deg); }
+.currency-front, .currency-back { position:absolute; width:100%; height:100%; border-radius:15px; backface-visibility:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.2); background:white; overflow:hidden; }
+.currency-front img { width:100%; height:250px; object-fit:cover; }
+.currency-front h3 { margin-top:1rem; color:#004d40; font-size:1.2rem; }
+.currency-back { background:linear-gradient(180deg,#004d40,#00796b); color:white; transform:rotateY(180deg); padding:1.5rem; }
+.currency-back h4 { margin-bottom:1rem; font-size:1.1rem; color:#ffee58; }
+.currency-back ul { text-align:left; line-height:1.6; font-size:0.95rem; list-style-type:square; }
+.currency-back li { margin-left:1rem; }
+
+/* ===== FEEDBACK FORM ===== */
+.contact-section { background:linear-gradient(135deg,#e0f7fa,#fffde7); padding:3rem 2rem; border-radius:15px; max-width:700px; margin:3rem auto; box-shadow:0 6px 20px rgba(0,0,0,0.1); }
+.contact-section h2 { text-align:center; color:#004d40; margin-bottom:2rem; }
+.contact-section input, .contact-section textarea { width:100%; padding:0.6rem; margin-bottom:1rem; border-radius:8px; border:1px solid #ccc; }
+.contact-section button { background:linear-gradient(90deg,#00796b,#004d40); color:white; padding:0.8rem 1.5rem; border:none; border-radius:8px; cursor:pointer; transition:all 0.3s; }
+.contact-section button:hover { background:linear-gradient(90deg,#004d40,#00796b); transform:translateY(-2px); }
+</style>
+
+<!-- ===== FEEDBACK FORM (FORMSPREE) ===== -->
+<section id="feedback" class="contact-section reveal">
+  <h2>Send Us Your Feedback</h2>
+  <form action="https://formspree.io/f/mjkjvawl" method="POST" id="rbiContactForm">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" required></textarea><br>
+
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<script>
+// ===== SIMPLE FORM ALERT =====
+const contactForm = document.getElementById("rbiContactForm");
+contactForm.addEventListener("submit", function(e){
+  setTimeout(()=>{
+    alert("Thank you for your feedback! Your message has been sent.");
+    contactForm.reset();
+  },100);
+});
+
+// ===== REVEAL ANIMATION =====
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
+  for(let i=0;i<reveals.length;i++){
+    const windowHeight = window.innerHeight;
+    const revealTop = reveals[i].getBoundingClientRect().top;
+    const revealPoint = 150;
+    if(revealTop < windowHeight - revealPoint){
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+</script>
+<!-- ======== QUIZ SECTION ======== -->
+<section id="quiz" class="reveal" style="background:linear-gradient(135deg,#ffe0b2,#fff3e0); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:2rem;">RBI Fun Quiz</h2>
+  <p style="text-align:center; max-width:850px; margin:0 auto 2rem; color:#333;">
+    Test your knowledge about RBI and Indian currency!
+  </p>
+
+  <div id="quiz-container" style="max-width:700px; margin:0 auto; background:white; padding:2rem; border-radius:15px; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
+    <div id="question" style="font-weight:600; margin-bottom:1rem;"></div>
+    <div id="options" style="margin-bottom:1rem;"></div>
+    <button id="nextBtn" style="padding:0.6rem 1.2rem; border:none; border-radius:8px; background:linear-gradient(90deg,#00796b,#004d40); color:white; cursor:pointer; transition:all 0.3s;">Next</button>
+    <div id="score" style="margin-top:1rem; font-weight:600;"></div>
+  </div>
+</section>
+
+<script>
+// ===== QUIZ DATA =====
+const quizData = [
+  { q: "When was the RBI established?", options:["1935","1947","1921","1950"], answer:"1935" },
+  { q: "Which note was introduced post-2016 demonetization?", options:["₹500","₹1000","₹2000","₹200"], answer:"₹2000" },
+  { q: "Who can issue Indian currency?", options:["Any Bank","RBI","Finance Ministry","State Banks"], answer:"RBI" },
+  { q: "RBI's main goal is:", options:["Price Stability","Tax Collection","Foreign Trade","Mining"], answer:"Price Stability" }
+];
+
+let current = 0;
+let score = 0;
+
+function loadQuiz() {
+  if(current >= quizData.length){
+    document.getElementById("quiz-container").innerHTML = `<h3>Quiz Completed! Your Score: ${score}/${quizData.length}</h3>`;
+    return;
+  }
+  const q = quizData[current];
+  document.getElementById("question").innerText = q.q;
+  const optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+  q.options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.style.padding="0.5rem 1rem";
+    btn.style.margin="0.5rem";
+    btn.style.borderRadius="8px";
+    btn.style.border="none";
+    btn.style.cursor="pointer";
+    btn.style.background="#e0f2f1";
+    btn.onclick = () => {
+      if(opt === q.answer) { score++; btn.style.background="#2e7d32"; btn.style.color="white"; } 
+      else { btn.style.background="#c62828"; btn.style.color="white"; }
+      setTimeout(()=>{ current++; loadQuiz(); },500);
+    };
+    optionsDiv.appendChild(btn);
+  });
+}
+
+document.getElementById("nextBtn").addEventListener("click", ()=>{
+  current++;
+  loadQuiz();
+});
+
+loadQuiz();
+</script>
+<!-- ===== CATCH THE BLACK THIEF GAME ===== -->
+<section id="catch-thief" class="reveal" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7); padding:4rem 2rem;">
+  <h2 style="text-align:center; color:#004d40; font-size:2.3rem; margin-bottom:1rem;">Catch the Black Thief!</h2>
+  <p style="text-align:center; max-width:850px; margin:0 auto 2rem; color:#333;">
+    The thief is running from the bank! Click on him before 30 seconds to catch him!
+  </p>
+
+  <div id="gameMap" style="position:relative; width:500px; height:300px; margin:0 auto; background:#c8e6c9; border-radius:15px; border:2px solid #004d40; overflow:hidden;">
+    <!-- Bank -->
+    <div style="position:absolute; width:80px; height:50px; background:#ffc107; border-radius:5px; left:10px; top:230px; text-align:center; line-height:50px; font-weight:bold; color:#004d40;">BANK</div>
+    <!-- Thief -->
+    <div id="thief" style="width:25px; height:25px; background:black; border-radius:50%; position:absolute; cursor:not-allowed;"></div>
+  </div>
+
+  <p style="text-align:center; margin-top:1rem; font-weight:600;">Time Left: <span id="thiefTimer">30</span> seconds</p>
+  <p style="text-align:center; margin-top:0.5rem; font-weight:600;" id="thiefMessage"></p>
+</section>
+
+<script>
+const thief = document.getElementById("thief");
+const gameMap = document.getElementById("gameMap");
+const timerDisplay = document.getElementById("thiefTimer");
+const message = document.getElementById("thiefMessage");
+
+let timeLeft = 30;
+let gameInterval;
+let thiefClickable = false;
+
+// Move thief randomly
+function moveThief(){
+  const maxX = gameMap.clientWidth - thief.clientWidth;
+  const maxY = gameMap.clientHeight - thief.clientHeight;
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+  thief.style.left = randomX + "px";
+  thief.style.top = randomY + "px";
+}
+
+// Start thief moving automatically for first 2 seconds
+let initialRunInterval = setInterval(moveThief, 500);
+
+// Make thief clickable after 2 seconds
+setTimeout(()=>{
+  clearInterval(initialRunInterval); // stop first automatic movement
+  thiefClickable = true;
+  thief.style.cursor = "pointer";
+
+  // Start main movement
+  const thiefMoveInterval = setInterval(moveThief, 700);
+
+  // Countdown timer
+  gameInterval = setInterval(()=>{
+    timeLeft--;
+    timerDisplay.innerText = timeLeft;
+    if(timeLeft <=0){
+      clearInterval(gameInterval);
+      clearInterval(thiefMoveInterval);
+      thief.style.display = "none";
+      message.innerText = "The thief escaped! 😢";
+    }
+  },1000);
+
+  // Catch thief on click
+  thief.addEventListener("click", ()=>{
+    if(!thiefClickable) return;
+    clearInterval(gameInterval);
+    clearInterval(thiefMoveInterval);
+    message.innerText = "Congratulations! You caught the thief! 🎉";
+    thief.style.display = "none";
+  });
+},2000);
+
+// Initialize thief at the bank position
+thief.style.left = "50px";
+thief.style.top = "230px";
+</script>
+<!-- ======== JAIL SCENE ======== -->
+<section id="jailScene" class="reveal" style="background:linear-gradient(135deg,#e0e0e0,#b0bec5); padding:4rem 2rem; text-align:center; display:none;">
+  <h2 style="color:#004d40; font-size:2rem; margin-bottom:1rem;">The Thief is in Jail!</h2>
+  <p style="max-width:850px; margin:0 auto 2rem; color:#333;">
+    Congratulations! The thief has been caught and is now behind bars.
+  </p>
+  <div style="width:200px; height:200px; background:#000; margin:0 auto; border-radius:10px; position:relative;">
+    <!-- Thief behind bars -->
+    <div style="width:50px; height:50px; background:black; border-radius:50%; position:absolute; top:75px; left:75px;"></div>
+    <!-- Bars -->
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; display:flex; justify-content:space-between;">
+      <div style="width:10px; background:#fff; height:100%;"></div>
+      <div style="width:10px; background:#fff; height:100%;"></div>
+      <div style="width:10px; background:#fff; height:100%;"></div>
+      <div style="width:10px; background:#fff; height:100%;"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ===== SHOW JAIL SCENE WHEN THIEF IS CAUGHT =====
+const jailScene = document.getElementById("jailScene");
+
+const originalCatchHandler = thief.onclick;
+thief.onclick = function(e){
+  originalCatchHandler(); // run existing catch logic
+  // show jail scene
+  jailScene.style.display = "block";
+}
+</script>
+
+
+<style>
+/* OPTIONAL: Hover effects for charts */
+canvas:hover { transform:scale(1.02); transition:transform 0.3s ease; }
+</style>
+<!-- ======== FINAL TOUCHES / FUN FOOTER ======== -->
+<footer class="reveal" style="background:linear-gradient(135deg,#004d40,#00796b); color:white; padding:3rem 2rem; text-align:center;">
+  <h2 style="margin-bottom:1rem;">Stay Connected with RBI</h2>
+  <p>Follow for updates, learning resources, and fun facts about Indian economy!</p>
+  <div style="margin:1rem 0;">
+    <a href="https://www.rbi.org.in/" target="_blank" style="color:white; margin:0 1rem; text-decoration:none;">Official RBI</a>
+    <a href="https://www.rbi.org.in/Scripts/BS_ViewBulletin.aspx" target="_blank" style="color:white; margin:0 1rem; text-decoration:none;">Bulletins</a>
+    <a href="https://www.rbi.org.in/Scripts/FAQView.aspx" target="_blank" style="color:white; margin:0 1rem; text-decoration:none;">FAQs</a>
+  </div>
+  <p style="margin-top:1rem; font-size:0.9rem;">© 2025 RBI Interactive Portal. Created for educational purposes by Skibdi 😎</p>
+</footer>
+
+<!-- ===== GLOBAL SPARKLE ANIMATION ===== -->
+<script>
+function createSparkle() {
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+  sparkle.style.top = Math.random()*100+"%";
+  sparkle.style.left = Math.random()*100+"%";
+  sparkle.style.width = sparkle.style.height = (5+Math.random()*10)+"px";
+  document.body.appendChild(sparkle);
+  setTimeout(()=>{ sparkle.remove(); },3000);
+}
+setInterval(createSparkle, 500);
+
+// Reveal elements on scroll (reuse for all sections)
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal");
+  for(let i=0;i<reveals.length;i++){
+    const windowHeight = window.innerHeight;
+    const revealTop = reveals[i].getBoundingClientRect().top;
+    const revealPoint = 150;
+    if(revealTop < windowHeight - revealPoint){
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+}
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+</script>
+
+<style>
+/* SPARKLE STYLE */
+.sparkle { position:absolute; width:8px; height:8px; background:#fff176; border-radius:50%; animation:float 3s infinite ease-in-out; z-index:1000; }
+@keyframes float { 0% { transform:translateY(0) } 50% { transform:translateY(-20px) } 100% { transform:translateY(0) } }
+
+/* FOOTER LINKS HOVER */
+footer a:hover { text-decoration:underline; }
+</style>
+
+<!-- ===== END OF WEBSITE ===== -->
+
+
 
 </body>
+
 </html>
